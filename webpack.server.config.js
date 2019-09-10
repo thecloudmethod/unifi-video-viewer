@@ -8,9 +8,15 @@ const WebpackConfigFactory = require('@nestjs/ng-universal')
  *
  * Example: WebpackConfigFactory.create(webpack);
  */
-module.exports = WebpackConfigFactory.create(webpack, {
+let wpcfg = WebpackConfigFactory.create(webpack, {
   // This is our Nest server for Dynamic universal
   server: './server/main.ts',
   // This is an example of Static prerendering (generative)
   prerender: './prerender.ts',
 });
+
+wpcfg.plugins.push(new webpack.DefinePlugin({
+  'process.env.FLUENTFFMPEG_COV': false
+}))
+
+module.exports = wpcfg

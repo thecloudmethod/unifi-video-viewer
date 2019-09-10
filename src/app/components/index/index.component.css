@@ -1,0 +1,33 @@
+#videoElement {
+    width: 100%;
+    z-index: 1;
+}
+
+#videoElement2 {
+    width: 100%;
+    z-index: 1;
+    margin-top: -5px;
+}
+
+.fullScreenContainer {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1001;    
+}
+
+#fullScreenStream {
+    width: 100%;
+    z-index: 1001;
+}
+
+.dblClickClose {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1002;    
+}

@@ -1,0 +1,15 @@
+<mat-grid-list [cols]="getColumnCount()" rowHeight="16:9">
+    <mat-grid-tile (dblclick)="initFullScreen(feed)"
+        *ngFor="let feed of feeds"
+        [colspan]="1"
+        [rowspan]="1">
+        <feed-select [live]="feed"></feed-select>
+    </mat-grid-tile>
+    <!--
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1">
+        <feed-select [streamIndex]="feeds.length"></feed-select>
+    </mat-grid-tile>
+    -->
+</mat-grid-list>

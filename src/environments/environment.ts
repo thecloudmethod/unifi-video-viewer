@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  prerenderUrl: 'http://localhost:4000'
+  prerenderUrl: 'http://localhost:4001',
+  apiUrl: 'http://localhost:4001',  
+  httpPort: 4001,
+  hostName: '192.168.1.25'
 };

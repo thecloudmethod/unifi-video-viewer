@@ -1,0 +1,29 @@
+<div class="row">
+  <mat-form-field appearance="fill" class="col-xs-12">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" cdkFocusInitial>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div class="row feed-list">
+  <table mat-table [dataSource]="dataSource" class="col-xs-12">
+
+    <ng-container matColumnDef="thubnail">
+      <td class="feed-thumbnail" mat-cell *matCellDef="let element">
+        <img width="100px" [src]="element.thumbnailUrl"/>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <td class="feed-name" mat-cell *matCellDef="let element"> {{element.name}} <span *ngIf="isSelected(element)">(Currently Selected)</span> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="select">
+      <td mat-cell *matCellDef="let element" class="feed-select">
+        <button *ngIf="!isSelected(element)" mat-raised-button color="primary" class="pull-right" (click)="selectFeed($event, element)">Select</button>
+        <button *ngIf="isSelected(element)" mat-raised-button color="warn" class="pull-right" (click)="removeFeed($event)">Remove</button>
+      </td>
+    </ng-container>
+  
+    <tr class="feed-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

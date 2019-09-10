@@ -1,0 +1,7 @@
+<div class="overlay-content">
+    <div class="dblClickClose" (dblclick)="unloadFullScreen()"></div>
+    <video id="fullScreenStream" preload="none" src="" #fullScreenStream></video>
+    <div class="loading">
+        <mat-progress-spinner [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+</div>

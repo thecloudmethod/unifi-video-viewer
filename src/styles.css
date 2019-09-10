@@ -1,11 +1,40 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
     margin: 0;
     padding: 0
 }
-body {
+
+body, html {
     font-family: Helvetica;
+    background-color: #000000;
+    overflow: auto;
+    scrollbar-width: none;
 }
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 #container {
     max-width: 800px;
     margin: 0 auto;
+}
+
+#player {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.transparentWhite mat-dialog-container {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    background: #000;
+    opacity: 0.85 !important;
 }

@@ -1,0 +1,44 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.overlay-content {
+    padding: 0;
+}
+
+#fullScreenStream {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1001;
+}
+
+.dblClickClose {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1002;    
+}
+
+.loading {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+mat-progress-spinner {
+
+}

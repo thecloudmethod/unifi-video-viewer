@@ -1,0 +1,124 @@
+<ng-template #nodata>
+  <div class="col-xs-12 text-center no-data">There are no sources. You may add some above.</div>
+</ng-template>
+
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+    <mat-button-toggle-group name="source" aria-label="source" (change)="sourceChange($event)">
+      <mat-button-toggle color="primary" value="unifi" [checked]="source=='unifi'">UniFi Video NVR</mat-button-toggle>
+      <mat-button-toggle color="primary" value="single" [checked]="source=='single'">Single Input Url</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div *ngIf="source=='unifi'" class="form-group">
+      <h4>Add Source</h4>
+      <form [formGroup]="addUnifiForm" >
+      <mat-form-field class="col-md-2 col-xs-12">
+        <mat-select placeholder="Protocol" id="protocol" formControlName="protocol">
+          <mat-option value="http">http</mat-option>
+          <mat-option value="https">https</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="col-md-4 col-xs-12">
+        <input matInput placeholder="Host" id="host" formControlName="host" required>
+        <mat-hint>(eg. 192.168.1.20 / unifi.company.local)</mat-hint>
+        <mat-error *ngIf="hasError('host', 'required')">A host is required</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="col-md-2 col-xs-12">
+        <input matInput placeholder="Port" id="port" formControlName="port">
+        <mat-hint>(Defaults - https: 7443 / http: 7080)</mat-hint>
+      </mat-form-field>
+    
+      <mat-form-field class="col-md-4 col-xs-12">
+        <input matInput placeholder="apiKey" id="apikey" formControlName="apikey" required>
+        <mat-hint>Access at user section of your Unifi Video web interface.</mat-hint>
+        <mat-error *ngIf="hasError('apikey', 'required')">An apiKey is required</mat-error>
+      </mat-form-field>
+      </form>
+
+      <ng-container *ngIf="nvrs.length > 0; else nodata" >
+      <table mat-table [dataSource]="nvrs" class="col-xs-12 mat-elevation-z2 sources-table" #nvrsTable>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="host">
+            <th mat-header-cell *matHeaderCellDef> Host </th>
+            <td mat-cell *matCellDef="let element"> {{element.protocol}}://{{element.host}}:{{element.port}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="apikey">
+            <th mat-header-cell *matHeaderCellDef> apiKey </th>
+            <td mat-cell *matCellDef="let element"> {{element.apikey}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button class="pull-right" mat-icon-button color="warn" aria-label="Remove Unifi Video Server" (click)="remove(element)">
+                  <mat-icon>clear</mat-icon>
+                </button>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      </ng-container>
+    </div>
+
+    <div *ngIf="source=='single'" class="form-group">
+      <h4>Add Source</h4>
+      <form [formGroup]="addSingleUrlForm">
+      <mat-form-field class="col-md-4 col-xs-12">
+        <input matInput placeholder="Name" id="name" formControlName="name" required>
+        <mat-hint>Name of the Camera</mat-hint>
+        <mat-error *ngIf="singleUrlHasError('name', 'required')">A name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-8 col-xs-12">
+        <input matInput placeholder="Stream Url" id="url" formControlName="url" required>
+        <mat-hint>(eg. rtmp://domain.or.ip:1935/live/streamname)</mat-hint>
+        <mat-error *ngIf="singleUrlHasError('url', 'required')">A url is required</mat-error>
+      </mat-form-field>
+      </form>
+
+      <ng-container *ngIf="single_sources.length > 0; else nodata" >
+        <table mat-table [dataSource]="single_sources" class="col-xs-12 mat-elevation-z2 sources-table" #singleSourceTable>
+  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="url">
+            <th mat-header-cell *matHeaderCellDef> Url </th>
+            <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button class="pull-right" mat-icon-button color="warn" aria-label="Remove Video Stream" (click)="remove(element)">
+                  <mat-icon>clear</mat-icon>
+                </button>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="singleSourceDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: singleSourceDisplayedColumns;"></tr>
+        </table>
+      </ng-container>
+  </div>
+</div>
+<div mat-dialog-actions class="pull-right">
+  <button mat-flat-button (click)="onNoClick()">Close</button>
+  <button mat-flat-button color="primary" [disabled]="formValid()" (click)="validateSource()" cdkFocusInitial>Add</button>
+</div>

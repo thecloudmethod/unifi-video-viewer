@@ -1,0 +1,47 @@
+<ng-template #nodata>
+  <div class="col-xs-12 text-center no-data">There are no sources. You may add some above.</div>
+</ng-template>
+
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+    
+  <form [formGroup]="displaySettings" >
+  <mat-form-field class="col-md-2 col-xs-12">
+    <mat-select placeholder="Feeds Per Row" id="fpr" formControlName="fpr">
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="5">5</mat-option>
+      <mat-option value="6">6</mat-option>
+      <mat-option value="7">7</mat-option>
+      <mat-option value="8">8</mat-option>
+      <mat-option value="9">9</mat-option>
+      <mat-option value="10">10</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-md-4 col-xs-12">
+    <input matInput placeholder="Total Row Width (pixels)" id="tpw" formControlName="tpw" required>
+    <mat-hint>(eg. 1920)</mat-hint>
+    <mat-error *ngIf="hasError('tpw', 'required')">A host is required</mat-error>
+  </mat-form-field>
+
+  <div class="row">
+    <mat-checkbox formControlName="hwaccel" class="col-md-12 col-xs-12">Hardware Acceleration</mat-checkbox>
+  </div>
+
+  <mat-form-field class="col-md-2 col-xs-12">
+    <mat-select placeholder="GPU" id="hwaprov" formControlName="hwaprov">
+      <mat-option value="nvidia">Nvidia</mat-option>
+      <mat-option value="intel">Intel</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  
+  </form>
+</div>
+<div mat-dialog-actions class="pull-right">
+  <button mat-flat-button (click)="onNoClick()">Close</button>
+  <button mat-flat-button color="primary" [disabled]="formValid()" (click)="validateSource()" cdkFocusInitial>Save</button>
+</div>

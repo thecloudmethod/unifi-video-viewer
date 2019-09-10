@@ -1,0 +1,4 @@
+<div *ngIf="feedSelectOpen" class="selected"></div>
+<div [@fadeInOut]="editSourceStatus ? 'mouseover' : 'mouseleave'" (mouseenter) ="changeEditSourceStatus()"  (mouseleave) ="changeEditSourceStatus()" class="editSourceStatus">
+    <button mat-mini-fab color="primary" (click)="openFeedSelect()"><mat-icon>edit</mat-icon></button>
+</div>
