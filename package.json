@@ -24,7 +24,7 @@
     "generate:prerender": "cd dist && node prerender",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:prerender": "cd dist/browser && http-server -p 8080",
-    "serve:ssr": "pm2 start ecosystem.config.js --env production --no-daemon"
+    "serve:ssr": "set PORT=80&&node dist/server"
   },
   "pre-commit": [],
   "private": true,
