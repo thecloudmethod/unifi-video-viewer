@@ -464,9 +464,9 @@ export class FfmpegService implements OnModuleInit, OnApplicationShutdown {
                 
             } else {
                 if(feed.state != "CONNECTED") {
-                    buildCommand = buildCommand + 'color=s='+this.feedWidth+'x'+this.feedHeight+':c=black, drawtext=text=\'Disconnected\':x=(w-text_w)/2:y=(h-text_h)/2:fontfile=\'C:\\Windows\\Fonts\\arial.ttf\':fontsize=12:fontcolor=white ['+index+'];' 
+                    buildCommand = buildCommand + 'color=s='+this.feedWidth+'x'+this.feedHeight+':c=black, drawtext=text=\'Disconnected\':x=(w-text_w)/2:y=(h-text_h)/2:fontfile=/Windows/Fonts/arial.ttf:fontsize=12:fontcolor=white ['+index+'];' 
                 } else {
-                    buildCommand = buildCommand + 'color=s='+this.feedWidth+'x'+this.feedHeight+':c=black, drawtext=text=\'No Input Selected\':x=(w-text_w)/2:y=(h-text_h)/2:fontfile=\'C:\\Windows\\Fonts\\arial.ttf\':fontsize=12:fontcolor=white ['+index+'];'    
+                    buildCommand = buildCommand + 'color=s='+this.feedWidth+'x'+this.feedHeight+':c=black, drawtext=text=\'No Input Selected\':x=(w-text_w)/2:y=(h-text_h)/2:fontfile=Windows/Fonts/arial.ttf:fontsize=12:fontcolor=white ['+index+'];'    
                 }
             }
 
