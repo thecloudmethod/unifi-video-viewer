@@ -638,9 +638,9 @@ export class FfmpegService implements OnModuleInit, OnApplicationShutdown {
                 this.websocketService.websocketRelaySubject$.next({ channel: 'err', message: { data: { component: 'ffmpeg', stream: fullScreenStream.streamName, details: stderr }, message: err.message } });
             }
             
-             //console.log('An error occurred: ' + err.message);
-             //console.log('stdout', stdout);
-             //console.log('stderr', stderr);
+             console.log('An error occurred: ' + err.message);
+             console.log('stdout', stdout);
+             console.log('stderr', stderr);
          }).on('progress', function(progress) {
              //console.log('[ffmpeg]', progress);
            })

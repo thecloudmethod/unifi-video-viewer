@@ -1,0 +1,1 @@
+set PORT=80&& node dist/server
