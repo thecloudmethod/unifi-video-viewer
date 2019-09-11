@@ -618,7 +618,7 @@ export class FfmpegService implements OnModuleInit, OnApplicationShutdown {
         fullScreenStream.watchers = 0;
         fullScreenStream.initSIGKILL = false;
 
-        fullScreenStream.ffmpeg.input(fullScreenStream.feed.fullResFeedUrl).inputOptions(['-fflags nobuffer', '-hwaccel qsv', '-c:v h264_qsv'])
+        fullScreenStream.ffmpeg.input(fullScreenStream.feed.fullResFeedUrl).inputOptions(['-fflags nobuffer'/*, '-hwaccel qsv', '-c:v h264_qsv'*/])
 
         if(streamPathArr[0] == 'rtmp:') {
             fullScreenStream.ffmpeg.inputOptions(['-rtmp_buffer 500'])
