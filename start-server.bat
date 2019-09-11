@@ -1,1 +1,1 @@
-set PORT=80&& node dist/server
+set PORT=80&& node C:\etc\unifi-video-viewer\dist/server
