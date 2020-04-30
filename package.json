@@ -60,7 +60,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "flv.js": "^1.5.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "locomote-video-player": "^1.1.12",
     "ng2-dragula": "2.1.1",
     "node-media-server": "^2.1.2",
