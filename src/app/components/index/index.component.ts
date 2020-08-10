@@ -66,7 +66,7 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(DOCUMENT) private doc,
+    @Inject(DOCUMENT) private document: Document,
     private io: AngularSocketIoUniversalService,
     public videoSourceService: VideoSourceService,
     private _snackBar: MatSnackBar,
@@ -75,7 +75,7 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
   
-    this.io.connect(environment.apiUrl+'/', this.isBrowser)
+    this.io.connect(this.document.location.protocol +'//'+ this.document.location.hostname+'/', this.isBrowser)
     if(this.isBrowser) {
       this.io.onMessage('refresh_stream_0').subscribe(events => {
         if(events) {
@@ -184,7 +184,7 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
             this.flvPlayer = flvjs.createPlayer({
               type: 'flv',
               isLive: true,
-              url: 'ws://'+environment.hostName+':8000/live/0.flv'
+              url: 'ws://'+this.document.location.hostname+':8000/live/0.flv'
             },
             {
               enableWorker: true,
@@ -222,7 +222,7 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
             this.flvPlayer2 = flvjs.createPlayer({
               type: 'flv',
               isLive: true,
-              url: 'ws://'+environment.hostName+':8000/live/1.flv'
+              url: 'ws://'+this.document.location.hostname+':8000/live/1.flv'
             },
             {
               enableWorker: true,

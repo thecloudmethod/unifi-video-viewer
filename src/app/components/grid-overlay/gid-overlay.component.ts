@@ -34,7 +34,7 @@ export class GridOverlayComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(DOCUMENT) private doc,
+    @Inject(DOCUMENT) private document: Document,
     private fullScreenDialog: FullScreenStreamService,
     public videoSourceService: VideoSourceService,
     private ref: ChangeDetectorRef,
@@ -50,7 +50,7 @@ export class GridOverlayComponent implements OnInit {
       this.ref.markForCheck();
     })
 
-    this.io.connect(environment.apiUrl+'/', this.isBrowser)
+    this.io.connect(this.document.location.protocol +'//'+ this.document.location.hostname+'/', this.isBrowser)
 
     this.io.onMessage('refresh').subscribe(events => {
       if(events) {

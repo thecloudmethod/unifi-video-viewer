@@ -32,6 +32,7 @@ export class FullScreenStreamComponent implements OnInit, OnDestroy, AfterViewIn
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
+        @Inject(DOCUMENT) private document: Document,
         private io: AngularSocketIoUniversalService,
         public videoSourceService: VideoSourceService,
         public zone: NgZone,
@@ -40,7 +41,7 @@ export class FullScreenStreamComponent implements OnInit, OnDestroy, AfterViewIn
         @Inject(FULL_SCREEN_STREAM_DIALOG_DATA) public live: any) { }
 
     ngOnInit() {
-        this.io.connect(environment.apiUrl+'/', this.isBrowser)
+        this.io.connect(this.document.location.protocol +'//'+ this.document.location.hostname+'/', this.isBrowser)
     }
 
     ngAfterViewInit() {
@@ -103,7 +104,7 @@ export class FullScreenStreamComponent implements OnInit, OnDestroy, AfterViewIn
               this.fullScreenFlvPlayer = flvjs.createPlayer({
                 type: 'flv',
                 isLive: true,
-                url: 'ws://'+environment.hostName+':8000/live/'+streamName+'.flv'
+                url: 'ws://'+this.document.location.hostname+':8000/live/'+streamName+'.flv'
               },
               {
                 enableWorker: true,

@@ -11,7 +11,7 @@ export class UniversalInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     console.log(`intercepting the url ${req.url}`);
     const serverReq = !this.serverUrl ? req : req.clone({
-      url: `${this.serverUrl}${req.url}`
+      url: `${req.url}`
     });
 
     return next.handle(serverReq);

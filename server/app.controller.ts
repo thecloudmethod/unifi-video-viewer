@@ -54,6 +54,12 @@ export class AppController {
       },
     ];
   }
+
+  @Get('api/reset')
+  resetStreams(): any {
+    this.ffmpegService.triggerReload();
+    return { reset: true }
+  }
   
   @Get('api/cameras')
   async getAllCameras(){
