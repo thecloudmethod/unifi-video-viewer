@@ -53,7 +53,7 @@
     "bootstrap": "3.4.0",
     "bufferutil": "^4.0.1",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.9.1",
+    "class-validator": "^0.14.0",
     "classlist.js": "1.1.20150312",
     "core-js": "^2.6.5",
     "dragula": "https://github.com/DevIntent/dragula.git#3.7.4",
